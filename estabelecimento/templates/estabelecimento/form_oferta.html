@@ -1,0 +1,113 @@
+{% extends 'estabelecimento/base.html' %}
+
+{% block title %}Minhas Ofertas - Gestão de Ofertas{% endblock %}
+
+{% block content %}
+<!-- Seção de Listagem de Ofertas -->
+<div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Minhas Ofertas Cadastradas</h2>
+        <a href="{% url 'estabelecimento:criar_oferta' %}" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Nova Oferta
+        </a>
+    </div>
+
+    <!-- Filtros e Busca -->
+    <form method="get" class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar oferta..." name="busca" value="{{ busca }}">
+                <button class="btn btn-outline-secondary" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <select class="form-select" name="status" onchange="this.form.submit()">
+                <option value="">Todas as ofertas</option>
+                <option value="ativa" {% if status_filter == 'ativa' %}selected{% endif %}>Ofertas ativas</option>
+                <option value="inativa" {% if status_filter == 'inativa' %}selected{% endif %}>Ofertas inativas</option>
+            </select>
+        </div>
+    </form>
+
+    <!-- Lista de Ofertas -->
+    <div class="row">
+        {% for oferta in ofertas %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 card-oferta {% if oferta.status == 'ativa' %}status-ativa{% else %}status-inativa{% endif %}">
+                <img src="{{ oferta.imagem|default:'https://via.placeholder.com/300x200?text=Oferta' }}" 
+                     class="card-img-top" alt="{{ oferta.titulo }}" 
+                     style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge {% if oferta.status == 'ativa' %}bg-success{% else %}bg-danger{% endif %}">
+                            {{ oferta.get_status_display }}
+                        </span>
+                        {% if oferta.preco_original %}
+                        <span class="badge bg-warning text-dark">
+                            {{ oferta.desconto_percentual }}% OFF
+                        </span>
+                        {% endif %}
+                    </div>
+                    <h5 class="card-title">{{ oferta.titulo }}</h5>
+                    <p class="card-text">{{ oferta.descricao }}</p>
+                    <div class="mb-2">
+                        <small class="text-muted">Categoria: {{ oferta.get_categoria_display }}</small>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            {% if oferta.preco_original %}
+                            <span class="text-muted text-decoration-line-through">R$ {{ oferta.preco_original }}</span>
+                            {% endif %}
+                            <span class="fs-5 fw-bold text-primary">R$ {{ oferta.preco_oferta }}</span>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-muted">Válida até: {{ oferta.validade|date:"d/m/Y" }}</small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'estabelecimento:editar_oferta' oferta.id %}" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i> Editar
+                        </a>
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalExclusao{{ oferta.id }}">
+                            <i class="bi bi-trash"></i> Excluir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmação de Exclusão -->
+        <div class="modal fade" id="modalExclusao{{ oferta.id }}" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmar Exclusão</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem certeza que deseja excluir a oferta "{{ oferta.titulo }}"?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <form action="{% url 'estabelecimento:excluir_oferta' oferta.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <i class="bi bi-tag" style="font-size: 3rem;"></i>
+            <h4 class="mt-3">Nenhuma oferta cadastrada</h4>
+            <p>Clique em "Nova Oferta" para começar</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

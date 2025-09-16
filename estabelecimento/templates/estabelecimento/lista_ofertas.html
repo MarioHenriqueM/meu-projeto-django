@@ -1,0 +1,127 @@
+{% extends 'estabelecimento/base.html' %}
+
+{% block title %}{{ titulo_pagina }} - Gestão de Ofertas{% endblock %}
+
+{% block content %}
+<!-- Seção de Cadastro/Edição de Oferta -->
+<div>
+    <h2 class="section-title mb-4">{{ titulo_pagina }}</h2>
+    
+    <form method="post" id="form-oferta">
+        {% csrf_token %}
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="mb-3">
+                    <label for="id_titulo" class="form-label">Título da Oferta *</label>
+                    {{ form.titulo }}
+                    {% if form.titulo.errors %}
+                    <div class="text-danger">{{ form.titulo.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_categoria" class="form-label">Categoria *</label>
+                    {{ form.categoria }}
+                    {% if form.categoria.errors %}
+                    <div class="text-danger">{{ form.categoria.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_descricao" class="form-label">Descrição da Oferta *</label>
+            {{ form.descricao }}
+            {% if form.descricao.errors %}
+            <div class="text-danger">{{ form.descricao.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_preco_original" class="form-label">Preço Original (R$)</label>
+                    {{ form.preco_original }}
+                    {% if form.preco_original.errors %}
+                    <div class="text-danger">{{ form.preco_original.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_preco_oferta" class="form-label">Preço com Desconto (R$) *</label>
+                    {{ form.preco_oferta }}
+                    {% if form.preco_oferta.errors %}
+                    <div class="text-danger">{{ form.preco_oferta.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="desconto_calculado" class="form-label">Desconto (%)</label>
+                    <input type="number" class="form-control" id="desconto_calculado" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="id_validade" class="form-label">Validade da Oferta *</label>
+                    {{ form.validade }}
+                    {% if form.validade.errors %}
+                    <div class="text-danger">{{ form.validade.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="id_status" class="form-label">Status *</label>
+                    {{ form.status }}
+                    {% if form.status.errors %}
+                    <div class="text-danger">{{ form.status.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_imagem" class="form-label">Imagem da Oferta (URL)</label>
+            {{ form.imagem }}
+            {% if form.imagem.errors %}
+            <div class="text-danger">{{ form.imagem.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'estabelecimento:lista_ofertas' %}" class="btn btn-secondary me-md-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Salvar Oferta</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Calcular desconto automaticamente
+    function calcularDesconto() {
+        const precoOriginal = parseFloat(document.getElementById('id_preco_original').value) || 0;
+        const precoOferta = parseFloat(document.getElementById('id_preco_oferta').value) || 0;
+        
+        if (precoOriginal > 0 && precoOferta > 0 && precoOriginal > precoOferta) {
+            const percentual = ((precoOriginal - precoOferta) / precoOriginal) * 100;
+            document.getElementById('desconto_calculado').value = percentual.toFixed(0);
+        } else {
+            document.getElementById('desconto_calculado').value = '';
+        }
+    }
+    
+    document.getElementById('id_preco_original').addEventListener('input', calcularDesconto);
+    document.getElementById('id_preco_oferta').addEventListener('input', calcularDesconto);
+    
+    // Calcular desconto ao carregar a página (para edição)
+    document.addEventListener('DOMContentLoaded', calcularDesconto);
+</script>
+{% endblock %}
