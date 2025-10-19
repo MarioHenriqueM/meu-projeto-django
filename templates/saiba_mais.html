@@ -1,0 +1,188 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}Saiba Mais{% endblock %}
+{% block content%}
+<link rel="stylesheet" href="{% static 'css/S_mais.css' %}">
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="display-4 fw-bold">Juntos contra o <span class="destaque">desperdício!</span></h1>
+        <p class="lead">Conectando generosidade e sustentabilidade através da tecnologia.</p>
+    </div>
+</section>
+
+<div class="container my-5">
+
+    <div class="apresentacao-section">
+        <h1 class="mb-4 text-center">Quem somos</h1>
+        <p class="lead">O <strong>Ciclo do Bem</strong> é uma plataforma inovadora que conecta estabelecimentos que possuem 
+                        <span class="destaque-texto">excedentes de alimentos</span> com instituições que 
+                        <span class="destaque-texto">distribuem solidariedade</span>. Nosso propósito é reduzir o desperdício de
+                         alimentos e alimentar esperanças, criando um ciclo virtuoso de doação e impacto social positivo.</p>
+        <p class="lead">Acreditamos que nenhum alimento deve ser desperdiçado enquanto existem pessoas passando fome. Por isso, 
+            desenvolvemos uma solução tecnológica que facilita a conexão entre quem pode doar e quem precisa receber.</p>
+    </div>
+
+    <section class="impacto-section text-center">
+        <div class="container">
+            <h2 class="mb-4">Nosso impacto até agora</h2>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-4">
+                    <div class="impacto-card">
+                        <h3 class="text-success fw-bold">+10 toneladas</h3>
+                        <p>de alimentos reaproveitados</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="impacto-card">
+                        <h3 class="text-warning fw-bold">+50 instituições</h3>
+                        <p>beneficiadas diretamente</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="impacto-card">
+                        <h3 class="text-primary fw-bold">+2000 pessoas</h3>
+                        <p>alimentadas com esperança</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<div class="video-section">
+    <h2 class="text-center mb-4">Entenda melhor nossa missão</h2>
+    <p class="lead">
+        Em um mundo onde o desperdício de alimentos é uma triste realidade, e a fome ainda assombra muitas famílias,
+        nossa missão é clara: conectar quem precisa com quem pode ajudar. Nossa plataforma nasceu da vontade de
+        transformar essa realidade, criando pontes entre restaurantes, estabelecimentos e instituições que desejam
+        fazer a diferença.
+    </p>
+    <p class="lead">
+        Acreditamos que a solidariedade e a colaboração são os ingredientes essenciais para um futuro mais justo.
+        E é com essa visão que celebramos a Lei Federal de 2020, um marco que abriu portas para a doação de
+        alimentos por parte dos restaurantes, combatendo o desperdício e nutrindo esperanças.
+    </p>
+    <p class="lead">
+        Para entender melhor como essa lei funciona e como ela impulsiona nossa missão, assista ao vídeo abaixo.
+        Nele, é explicado de forma clara e concisa os benefícios dessa iniciativa e como ela se encaixa em nossa
+        plataforma:
+    </p>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="video-wrapper">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/g5E3Uz5L3BE" 
+                            title="Vídeo explicativo"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="galeria-section">
+        <h2 class="text-center mb-4">Nossa atuação em imagens</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=400" class="galeria-img" alt="Doação de alimentos">
+            </div>
+            <div class="col-md-4">
+                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400" class="galeria-img" alt="Entrega para instituições">
+            </div>
+            <div class="col-md-4">
+                <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400" class="galeria-img" alt="Voluntários ajudando">
+            </div>
+        </div>
+    </div>
+
+    <div class="como-funciona-section">
+        <div class="container">
+            <h2 class="text-center mb-5">Como funciona</h2>
+            <div class="row text-center g-4">
+                <div class="col-md-4">
+                    <div class="funciona-card">
+                        <i class="bi bi-shop text-success"></i>
+                        <h3>1. Estabelecimentos</h3>
+                        <p class="ladinho">Cadastram alimentos que não serão vendidos, mas ainda estão próprios para consumo. O processo é simples e rápido através da nossa plataforma.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="funciona-card">
+                        <i class="bi bi-arrow-left-right text-warning"></i>
+                        <h3>2. Plataforma</h3>
+                        <p class="ladinho">Unimos quem quer ajudar e quem precisa de apoio, tornando mais fácil combinar e organizar as doações entre as partes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="funciona-card">
+                        <i class="bi bi-people-fill text-primary"></i>
+                        <h3>3. Instituições</h3>
+                        <p class="ladinho">Recebem os alimentos e distribuem para famílias em situação de vulnerabilidade, transformando vidas através da solidariedade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mvv-section">
+        <h2 class="text-center mb-5">Missão, Visão e Valores</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="mvv-card">
+                    <h4><i class="bi bi-bullseye me-2"></i>Missão</h4>
+                    <p class="ladinho">Combater o desperdício de alimentos e a fome, conectando estabelecimentos doadores com instituições beneficentes através de uma plataforma tecnológica eficiente e acessível.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mvv-card">
+                    <h4><i class="bi bi-eye me-2"></i>Visão</h4>
+                    <p class="ladinho">Ser referência nacional na redistribuição de alimentos, promovendo uma rede solidária que combate o desperdício e assegura segurança alimentar para todos.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mvv-card">
+                    <h4><i class="bi bi-heart me-2"></i>Valores</h4>
+                    <p class="ladinho">Solidariedade, inovação, transparência, sustentabilidade e compromisso social. Acreditamos que juntos podemos transformar a realidade de milhares de pessoas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="depoimentos-section">
+        <div class="container">
+            <h2 class="text-center mb-5">O que dizem sobre nós</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="depoimento-card">
+                        <blockquote class="blockquote">
+                            <p class="mb-3">"Graças ao Ciclo do Bem, conseguimos alimentar dezenas de famílias toda semana. A plataforma facilitou muito o processo de recebimento de doações e nos permitiu ajudar ainda mais pessoas."</p>
+                            <footer class="blockquote-footer">Maria das Dores, <cite title="Instituição Solidária">Instituição Solidária</cite></footer>
+                        </blockquote>
+                    </div>
+                    <div class="depoimento-card">
+                        <blockquote class="blockquote">
+                            <p class="mb-3">"Como proprietário de um restaurante, sempre me incomodou o desperdício de alimentos. Com o Ciclo do Bem, encontrei uma forma prática de doar nossos excedentes e fazer a diferença na comunidade."</p>
+                            <footer class="blockquote-footer">João Silva, <cite title="Restaurante Sabor & Arte">Restaurante Sabor & Arte</cite></footer>
+                        </blockquote>
+                    </div>
+                    <div class="depoimento-card">
+                        <blockquote class="blockquote">
+                            <p class="mb-3">"O Ciclo do Bem transformou a forma como nossa padaria lida com os produtos do dia. Agora, ao invés de descartar, doamos para quem realmente precisa. É gratificante fazer parte dessa corrente do bem!"</p>
+                            <footer class="blockquote-footer">Ana Paula, <cite title="Padaria Pão Nosso">Padaria Pão Nosso</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<section class="contato-section">
+    <div class="container">
+        <h2 class="mb-3">Quer fazer parte dessa corrente do bem?</h2>
+        <p class="lead mb-4">Cadastre seu estabelecimento ou instituição e comece a transformar vidas hoje mesmo.</p>
+        <a href="{% url 'estabelecimentos:cadastrar_estabelecimento' %}" class="btn-contato">Sou Estabelecimento</a>
+        <a href="{% url 'instituicoes:cadastrar_instituicao' %}" class="btn-contato">Sou Instituição</a>
+    </div>
+</section>
+{% endblock%}
